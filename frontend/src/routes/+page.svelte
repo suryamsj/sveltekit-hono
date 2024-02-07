@@ -18,7 +18,6 @@
 	}
 
 	export let data;
-	export let form;
 
 	// Form Submit
 	const handleSubmit = () => {
@@ -56,8 +55,8 @@
 <Dialog
 	showDialog={deleteAll}
 	id="formDeleteAll"
-	title="Hapus Data?"
-	message="Data akan terhapus semua ketika anda klik tombol 'Yakin!'."
+	title="Are you sure?"
+	message="All of your data, will be deleted!."
 	closeDialog={openDialogDeleteAll}
 />
 
@@ -65,8 +64,8 @@
 <Dialog
 	showDialog={deleteOne}
 	id="formDeleteOne"
-	title="Hapus Data?"
-	message="Data akan terhapus ketika anda klik tombol 'Yakin!'."
+	title="Are you sure?"
+	message="Your data will be deleted!."
 	closeDialog={openDialogDeleteOne}
 />
 
@@ -74,7 +73,7 @@
 	<article>
 		{#if total > 0}
 			<form id="formDeleteAll" action="?/delete_all" method="post" use:enhance={handleSubmit}>
-				<button type="button" on:click={() => openDialogDeleteAll()}>Hapus semua data</button>
+				<button type="button" on:click={() => openDialogDeleteAll()}>Delete all</button>
 			</form>
 		{/if}
 		<figure>
@@ -82,10 +81,10 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">Nama</th>
-						<th scope="col">Nomor HP</th>
-						<th scope="col">Alamat</th>
-						<th scope="col">Aksi</th>
+						<th scope="col">Name</th>
+						<th scope="col">Phone Number</th>
+						<th scope="col">Address</th>
+						<th scope="col">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -135,7 +134,7 @@
 						</tr>
 					{:else}
 						<tr>
-							<td colspan="5" class="text-center">Tidak ada data</td>
+							<td colspan="5" class="text-center">No data</td>
 						</tr>
 					{/each}
 				</tbody>
@@ -150,34 +149,34 @@
 			use:enhance={handleSubmit}
 		>
 			<label for="name">
-				Nama Lengkap
+				Fullname
 				<input
 					type="text"
 					id="name"
 					name="name"
-					placeholder="Nama Lengkap"
+					placeholder="Fullname"
 					value={user?.data?.name ? user?.data?.name : ''}
 					required
 				/>
 			</label>
 			<label for="phone">
-				Nomor Handphone
+				Phone Number
 				<input
 					type="number"
 					id="phone"
 					name="phone"
-					placeholder="Nomor Handphone"
+					placeholder="Phone Number"
 					value={user?.data?.phone ? user?.data?.phone : ''}
 					required
 				/>
 			</label>
 			<label for="address">
-				Alamat
+				Address
 				<input
 					type="text"
 					id="address"
 					name="address"
-					placeholder="Alamat"
+					placeholder="Address"
 					value={user?.data?.address ? user?.data?.address : ''}
 					required
 				/>

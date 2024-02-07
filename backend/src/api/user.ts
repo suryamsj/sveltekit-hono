@@ -19,7 +19,7 @@ app.get("/", async (c) => {
         const total = await prisma.users.count();
         return c.json(
             {
-                message: "Berhasil mendapatkan data user",
+                message: "Successfully retrieved data",
                 data: users,
                 total
             },
@@ -34,7 +34,7 @@ app.get("/", async (c) => {
 app.post('/', validator('json', (value, c) => {
     const parsed = userValidation.safeParse(value)
     if (!parsed.success) {
-        return c.json({ message: "Validasi data gagal" }, 401)
+        return c.json({ message: "Data validation failed" }, 401)
     }
     return parsed.data
 }), async (c) => {
@@ -44,7 +44,7 @@ app.post('/', validator('json', (value, c) => {
             data: { name, address, phone }
         })
         return c.json({
-            message: "Berhasil menambahkan data",
+            message: "Successfully added data",
             data: user
         })
     } catch (error) {
@@ -77,7 +77,7 @@ app.get("/:id", async (c) => {
 app.patch("/:id", validator('json', (value, c) => {
     const parsed = userValidation.safeParse(value)
     if (!parsed.success) {
-        return c.json({ message: "Validasi data gagal" }, 401)
+        return c.json({ message: "Data validation failed" }, 401)
     }
     return parsed.data
 }), async (c) => {
@@ -91,7 +91,7 @@ app.patch("/:id", validator('json', (value, c) => {
             }
         })
         return c.json({
-            message: "Berhasil mengubah data",
+            message: "Successfully changed data",
             data: user
         })
     } catch (error) {
@@ -110,7 +110,7 @@ app.delete("/:id", async (c) => {
         });
         return c.json(
             {
-                message: "Berhasil menghapus data user",
+                message: "Successfully deleted data",
                 data: user,
             },
             200
@@ -124,7 +124,7 @@ app.delete("/:id", async (c) => {
 app.delete("/", async (c) => {
     try {
         const users = await prisma.users.deleteMany();
-        return c.json({ message: "Berhasil menghapus semua data user", data: users })
+        return c.json({ message: "Successfully deleted all data", data: users })
     } catch (error) {
         return c.json({ message: error }, 500)
     }

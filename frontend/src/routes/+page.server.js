@@ -27,7 +27,7 @@ export async function load({ url }) {
             const data = await res.json();
             return data;
         } catch (error) {
-            return fail(500, { message: "Error" })
+            return fail(500, { message: "Server Error" })
         }
     }
 
